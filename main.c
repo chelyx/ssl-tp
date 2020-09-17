@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
 #include "scanner.h"
 
 int cantIdentificadores = 0;
@@ -12,7 +8,49 @@ Token token; //TODO: TYPEDEF ENUM // nevermind
 
 
 int main() {
-	char* path = "cadena.txt";
+
+	printf("Los valores obtenidos de analizar los datos de prueba son: \n");
+
+	do
+	    {
+	        token = scanner();
+	        switch(token)
+	        {
+	            case IDENTIFICADOR:
+	            printf("identificador\n");
+	            cantIdentificadores++;
+	            break;
+	            case CONSTANTE:
+	            printf("constante entera\n");
+	            cantConstantes++;
+	            break;
+	            case NUMERAL:
+	            printf("numeral\n");
+	            cantNumerales++;
+	            break;
+	            case ERROR:
+	            printf("error\n");
+	            cantErrores++;
+	            break;
+	            case FDT:
+	            break;
+	            }
+	    }while(token != FDT);
+
+	    printf("----\n");
+	    printf("Totales\n");
+	    printf("Identificadores: %d\n",cantIdentificadores);
+	    printf("Constantes enteras: %d\n",cantConstantes);
+	    printf("Numerales: %d\n",cantNumerales);
+	    printf("Errores: %d\n",cantErrores);
+
+	    return 0;
+	}
+
+
+
+/*
+ char* path = "cadena.txt";
 	FILE* archivo =  fopen( path, "r" );
 	   if (!archivo)
 	    {
@@ -44,8 +82,8 @@ int main() {
 	           }
 	       }
 
-}
-/*
+
+
     char cadena[100];
     int length;
     int i = 0;
