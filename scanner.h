@@ -29,4 +29,4 @@ Token clasificarToken(int estado_presente);
 Token  scanner();
 
 
-#endif // SCANNER_H_INCLUDED
+#endif

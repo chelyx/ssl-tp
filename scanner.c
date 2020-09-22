@@ -38,7 +38,7 @@ int analizarEstado(char c)
   else if (c == EOF )
     return tabla[estado_presente][FDC];
   else
-    return 4;
+    return tabla[estado_presente][OTRO];
 }
 
 Token clasificarToken(int estado_presente)
@@ -64,14 +64,10 @@ Token clasificarToken(int estado_presente)
 
 Token scanner()
 {
-	int estado_anterior = -1;
 	estado_presente = 0;
 	do{
-	  estado_anterior = estado_presente;
  	  c  = getchar();
- 	  //printf("\n scanner getchar %c", c);
  	  estado_presente = analizarEstado(c);
- 	  //printf("\t est presente %i", estado_presente);
 	 }while(!esTerminal(estado_presente));
 
 	return clasificarToken(estado_presente);
