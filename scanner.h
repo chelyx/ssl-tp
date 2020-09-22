@@ -23,9 +23,9 @@ typedef enum{
 	FDC
 }Caracter;
 
-bool stop(int estado);
-int cambiarEstado(char c);
-Token aceptarToken(int estado_presente);
+bool esTerminal(int estado);
+int analizarEstado(char c);
+Token clasificarToken(int estado_presente);
 Token  scanner();
 
 
