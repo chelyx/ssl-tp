@@ -9,8 +9,8 @@ Token token; //TODO: TYPEDEF ENUM // nevermind
 
 int main() {
 
-	printf("Los valores obtenidos de analizar los datos de prueba son: \n");
 
+	printf("Ingrese la cadena: \n");
 	do
 	    {
 	        token = scanner();
@@ -33,7 +33,7 @@ int main() {
 	            cantErrores++;
 	            break;
 	            case FDT:
-	            break;
+	            	break;
 	            }
 	    }while(token != FDT);
 
@@ -46,69 +46,3 @@ int main() {
 
 	    return 0;
 	}
-
-
-
-/*
- char* path = "cadena.txt";
-	FILE* archivo =  fopen( path, "r" );
-	   if (!archivo)
-	    {
-	        printf("No se pudo abrir el archivo ");
-	        return EXIT_FAILURE;
-	    }
-
-	   while (token != FDT)
-	       {
-	           token = scanner(archivo);
-	           switch (token)
-	           {
-	           case IDENTIFICADOR:
-	               printf("Identificador\n");
-	               cantIdentificadores++;
-	               break;
-	           case CONSTANTE:
-	               printf("Constante entera\n");
-	               cantConstantes++;
-	               break;
-	           case NUMERAL:
-	        	   printf("Numeral");
-				   cantNumerales++;
-	        	   break;
-	           case ERROR:
-	               printf("Error\n");
-	               cantErrores++;
-	               break;
-	           }
-	       }
-
-
-
-    char cadena[100];
-    int length;
-    int i = 0;
-    char token[50] = "TOKEN";
-    int res;
-
-    printf( "Enter a value :");
-    gets(cadena);
-
-    length = strlen(cadena);
-
-    printf( "\nYou entered: ");
-    puts(cadena);
-
-    while(i < length) {
-        printf( "\nletter: ");
-        if(isspace(cadena[i]) != 0) {
-            res = scan_token(token, i);
-        } else {
-            putchar(cadena[i]);
-            printf("%d", i);
-        }
-        i++;
-    }
-
-    return 0;
-}
-*/

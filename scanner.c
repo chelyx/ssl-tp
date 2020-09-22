@@ -50,8 +50,7 @@ Token aceptarToken(int estado_presente)
 {
     switch(estado_presente)
 	{
-
-		case 6:
+        case 6:
                ungetc(c,stdin);
 		       return IDENTIFICADOR;
 		case 7:
@@ -65,37 +64,21 @@ Token aceptarToken(int estado_presente)
 				return ERROR;
 
 	}
-	return FDT;
+	 return FDT;
 }
 // Funcionamiento scanner
 
 Token scanner()
 {
+
+
 	do{
  	  c  = getchar();
  	  estado_presente = cambiarEstado(c);
 	   }while(!stop(estado_presente));
 
-	aceptarToken(estado_presente);
-	estado_presente = 0;
+	 aceptarToken(estado_presente);
+	 estado_presente = 0;
+
 }
-
-
-
-
-/* Token scanner(FILE* archivo)
-{
-	while(!stop(estado_actual)){
-		caracter = fgetc(archivo);
-		estadoActual = analizarCaracter(caracter)
-	}
-	
-	aceptarToken(estado_actual);
-	estado_actual = 0;
-}
-    
-    bool stop(int estado)
-{
-	return estados[estado];
-}*/
 
