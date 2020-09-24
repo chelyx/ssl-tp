@@ -1,4 +1,3 @@
-
 #include "scanner.h"
 
 
@@ -46,10 +45,6 @@ Token clasificarToken(int estado_presente)
     switch(estado_presente)
 	{
 
-        case 6:
-               ungetc(c,stdin);
-		       return IDENTIFICADOR;
-
 		case 6:
 		   ungetc(c,stdin);
 		   return IDENTIFICADOR;
@@ -79,14 +74,6 @@ Token scanner()
  	  c  = getchar();
  	  estado_presente = analizarEstado(c);
 	 }while(!esTerminal(estado_presente));
-	 aceptarToken(estado_presente);
+	clasificarToken(estado_presente);
 	 estado_presente = 0;
-
-}
-
-	return clasificarToken(estado_presente);
-}
-
-
-
-
+ }

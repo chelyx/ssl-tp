@@ -1,5 +1,5 @@
 #include "scanner.h"
-#include <stdbool.h>
+
 
 int cantIdentificadores = 0;
 int cantConstantes = 0;
@@ -9,10 +9,6 @@ Token token;
 
 int main() {
 
-
-	printf("Ingrese la cadena: \n");
-	do
-	    {
 			do
 			    {
 			        token = scanner();
