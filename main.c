@@ -1,5 +1,5 @@
 #include "scanner.h"
-
+#include <stdio.h>
 
 int cantIdentificadores = 0;
 int cantConstantes = 0;

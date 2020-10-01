@@ -1,31 +1,24 @@
 #include "scanner.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
 
-const bool estadosTerminales[10] = {false,false,false,false,false,true,true,true,true,true};
 
-int estado_presente = 0;
-char c;
+const bool estadosTerminales[9] = {false,false,false,false,true,true,true,true,true};
 
-
-static int tabla[10][6] = {
-    {1 , 2 , 3 , 0 , 4 , 5 },
-    {1 , 1 , 6 , 6 , 6 , 6 },
-    {7 , 2 , 7 , 7 , 7 , 7 },
-    {8 , 8 , 8 , 8 , 8 , 8 },
-    {9 , 9 , 9 , 9 , 4 , 9 },
-    {99 ,99 ,99 ,99 ,99, 99},
-    {99 ,99 ,99 ,99 ,99, 99},
-    {99 ,99 ,99 ,99 ,99, 99},
-    {99 ,99 ,99 ,99 ,99, 99},
-    {99 ,99 ,99 ,99 ,99, 99},
+static int tabla[4][6] = {
+    {1 , 2 , 7 , 0 , 3 , 4 },
+    {1 , 1 , 5 , 5 , 5 , 5 },
+    {6 , 2 , 6 , 6 , 6 , 6 },
+    {8 , 8 , 8 , 8 , 3 , 8 }
     };
 
-bool esTerminal(int estado){
+bool esTerminal(int estado) {
 	return estadosTerminales[estado];
 }
 
-int analizarEstado(char c)
-{
+int analizarEstado(char c, int estado_presente) {
   if(isalpha(c))
     return tabla[estado_presente][LETRA];
   else if(isdigit(c))
@@ -40,40 +33,37 @@ int analizarEstado(char c)
     return tabla[estado_presente][OTRO];
 }
 
-Token clasificarToken(int estado_presente)
-{
-    switch(estado_presente)
-	{
+Token clasificarToken(char c, int estado_presente) {
+    switch(estado_presente) {
+		case 4:
+			return FDT;
 
-		case 6:
+		case 5:
 		   ungetc(c,stdin);
 		   return IDENTIFICADOR;
 
-		case 7:
+		case 6:
 		   ungetc(c,stdin);
 		   return CONSTANTE;
-		case 8:
-			ungetc(c,stdin);
+
+		case 7:
 			return NUMERAL;
-		case 9:
+
+		default:
 			ungetc(c,stdin);
 			return ERROR;
-		default:
-			return FDT;
 	}
-
-	 return FDT;
 
 }
 
-Token scanner()
-{
-	estado_presente = 0;
+Token scanner() {
+	int estado_presente = 0;
+	char c;
 
-	do{
+	while(!esTerminal(estado_presente)) {
  	  c  = getchar();
- 	  estado_presente = analizarEstado(c);
-	 }while(!esTerminal(estado_presente));
-	clasificarToken(estado_presente);
-	 estado_presente = 0;
+ 	  estado_presente = analizarEstado(c, estado_presente);
+	 }
+
+	return clasificarToken(c, estado_presente);
  }
